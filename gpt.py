@@ -1,13 +1,18 @@
 import requests
 
-prefix = "You are a helpful assistant. Please briefly summarize the following content for the user. Format your summary in Markdown, in the format of a brief bullet-point summary for each new topic discussed."
+prefix = """Your output should use the following template:
+## Summary
+[summary text]
+### Highlights
+- Bulletpoint
 
+Your task is to summarise the text I have given you in up to seven concise bullet points, starting with a short overview of the content."""
 
 def summarize(content, key):
     # Create the JSON payload
     token = key
     payload = {
-        "model": "gpt-4-0613",
+        "model": "gpt-4",
         "messages": [
             {"role": "system", "content": prefix},
             {"role": "user", "content": content},
